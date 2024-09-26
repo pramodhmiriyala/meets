@@ -1,0 +1,44 @@
+/* Styling for the Login as Admin button */
+.login-btn {
+    background: linear-gradient(45deg, #3498db, #2980b9); /* Blue gradient background */
+    color: #ffffff; /* White text for better contrast */
+    border: none;
+    padding: 10px 30px;
+    border-radius: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-btn:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db); /* Inverted gradient on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+}
+
+/* Styling for the lock icon before the text */
+.login-icon {
+    margin-right: 8px; /* Space between the icon and the text */
+    font-size: 1.2rem; /* Slightly larger icon */
+    color: white; /* Dodger Blue for the lock icon */
+}
+
+/* Quote Footer Styling */
+.blockquote-footer {
+    font-size: 30px;
+    color: #555;
+}
+
+/* Card Styling */
+.card {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}

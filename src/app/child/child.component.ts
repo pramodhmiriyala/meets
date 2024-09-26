@@ -1,39 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PastorService } from '../pastor.service'; // Adjust the path as needed
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
-  styleUrl: './child.component.css'
+  styleUrls: ['./child.component.css']
 })
-export class ChildComponent {
+export class ChildComponent implements OnInit {
   userId!: string;
+  christudasEntries$!: Observable<any>; // Use definite assignment assertion
+  jashuvaEntries$!: Observable<any>; // Use definite assignment assertion
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, public pastorService: PastorService) {}
 
   ngOnInit(): void {
-    // Retrieve the 'userId' parameter from the route
     this.userId = this.route.snapshot.paramMap.get('UserId')!;
     console.log('User ID:', this.userId);
+
+    // Fetch entries from the service
+    this.christudasEntries$ = this.pastorService.getEntries().pipe(
+      map(entries => entries.filter(entry => entry.pastorName === 'Christudas Pastor'))
+    );
+
+    this.jashuvaEntries$ = this.pastorService.getEntries().pipe(
+      map(entries => entries.filter(entry => entry.pastorName === 'Jashuva Pastor'))
+    );
   }
-  Christudas=[
-    "https://youtu.be/nM7Gfhc9uq0?si=YhX44ucSMI3aQ-Xx",
-    "https://youtu.be/6A9TB1syltw?si=tLd-y3UN5MvNDATV",
-    "https://youtu.be/Ab3mwGkINzE?si=XgggUISzk0HIGhU8",
-    "https://youtu.be/cEoHDthoV8I?si=b3tpKyr_plS_IQMU",
-    "https://youtu.be/hz53CEOewkc?si=4elJlf9By5vM8ykZ"
-
-
-
-  ]
-  Jashuva = [
-    "https://www.youtube.com/live/FU9fexkApPY?si=9UT11ZATSRwu9OlI",
-    "https://www.youtube.com/live/clbIvi8vLp8?si=Rpn85tHTenoFCbQE",
-    "https://www.youtube.com/live/KxQN--QUt1g?si=6NYQigcoM9mpzZoa",
-   "https://www.youtube.com/live/nuFVwt4Rnq4?si=ZaJ3F4TpW02UUaBm",
-   "https://www.youtube.com/live/ba9hpCjaLvc?si=jfdT-l1ZPZc65Xdi"
-
-
-
-
-  ];
 }
